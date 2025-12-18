@@ -99,9 +99,9 @@
 
     const data = await res.json();
     queary.innerText=""
-    document.getElementById("name").innerText += data.user.name;
-    document.getElementById("points").innerText += (data.user.points)/10;
-    document.getElementById("datas").innerText += "\n"+"..."+data.user.datas.slice(-37);
+    document.getElementById("name").innerText = "Name: "+ data.user.name;
+    document.getElementById("points").innerText = "Points: "+ (data.user.points)/10;
+    document.getElementById("datas").innerText = "Datas\n"+"..."+data.user.datas.slice(-37);
   }
     
   </script>
