@@ -167,8 +167,13 @@
     }
     
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+      
+      100% {
+        transform: rotate(360deg);
+      }
     }
     
     .error-message {
@@ -186,6 +191,14 @@
       padding: 15px;
       border-radius: 6px;
       border-left: 4px solid #2ecc71;
+      margin-bottom: 15px;
+    }
+    .notify-message {
+      background-color: #e8f6ef;
+      color: purple;
+      padding: 5px;
+      border-radius: 6px;
+      border-left: 4px solid purple;
       margin-bottom: 15px;
     }
     
@@ -237,7 +250,8 @@
         padding: 15px;
       }
       
-      .box, #output {
+      .box,
+      #output {
         padding: 20px;
       }
     }
@@ -246,10 +260,17 @@
 
 <body>
   <div class="container">
-    <h1>User Data Retrieval System</h1>
+    <h1>Check Your Points</h1>
+    
+    <div class="notify-message">
+      <strong>Important Notice:</strong>
+      <p>কেটে নেওয়া পয়েন্টস গত মাসের, যার পেমেন্ট আগামী কয়েক দিনের মধ্যে দেওয়া হবে।</p>
+    </div>
+    
+    
     
     <div class="box">
-      <h3>Enter Your Credentials</h3>
+      <h3>Enter Your Name & Password</h3>
       
       <div class="input-group">
         <label for="checkName">Username:</label>
@@ -431,4 +452,4 @@
   </script>
 </body>
 
-  </html>
+</html>
