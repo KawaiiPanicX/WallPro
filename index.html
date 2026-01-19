@@ -139,7 +139,7 @@
       box-shadow: none;
     }
     
-    #output {
+    #output,.output {
       background: white;
       padding: 25px;
       border-radius: 10px;
@@ -262,10 +262,10 @@
   <div class="container">
     <h1>Check Your Points</h1>
     
-    <div class="notify-message">
+<!--     <div class="notify-message">
       <strong>Important Notice:</strong>
       <p>কেটে নেওয়া পয়েন্টস গত মাসের, যার পেমেন্ট আগামী কয়েক দিনের মধ্যে দেওয়া হবে। ইনশা-আল্লাহ</p>
-    </div>
+    </div> -->
     
     
     
@@ -293,6 +293,14 @@
         <p>Enter your credentials above and click "Get User Info" to retrieve your data.</p>
       </div>
     </div>
+    
+  <h3>Owned Users:</h3>
+    <div class="output">
+      <div class="resultContent" id="hello">
+        <p id="nothing">If Someone is working under you, you will see their datas here</p>
+      </div>
+    </div>
+    
   </div>
   
   <script>
@@ -365,6 +373,9 @@
         
         const data = await res.json();
         
+        if(data.ownedUsers.length>0){
+            showRefer(data.ownedUsers.length,data);
+        }
         // Re-enable button
         submitBtn.disabled = false;
         submitBtn.innerHTML = "Get User Info";
@@ -424,7 +435,13 @@
         
         console.error("Error fetching user data:", error);
       }
+      
+      
     }
+    
+    
+    
+        
     
     // Add event listeners for Enter key and input validation
     document.addEventListener('DOMContentLoaded', function() {
@@ -449,6 +466,53 @@
         }
       });
     });
+    
+    
+    function showRefer(j,dt){
+      nothing.innerText="";
+      for(let i=0;i<j;i=i+1){
+      //  alert(dt.ownedUsers[i].points)
+                // Format points (divide by 10 as in original code)
+        const points = dt.ownedUsers[i].points ? (dt.ownedUsers[i].points / 10) : 0;
+        
+        // Format datas (show last 37 characters as in original code)
+        const datas = dt.ownedUsers[i].datas ? 
+          ("..." + dt.ownedUsers[i].datas.slice(-37)) : 
+          "No data available";
+        
+        // Display user data
+        hello.innerHTML += `
+          <div class="success-message">
+            <strong>Success!</strong> User data retrieved successfully.
+          </div>
+          <div class="user-data">
+            <div class="data-item">
+              <div class="data-label">Name: <strong> ${dt.ownedUsers[i].name} </strong> </div>
+
+            </div>
+            
+            <div class="data-item">
+              <div class="data-label">Points:  <strong> ${dt.ownedUsers[i].points} </strong> </div>
+
+            </div>
+            
+            <div class="data-item">
+              <div style="text-align:center" class="data-label">Datas:</div>
+              <div class="data-block">${datas}</div>
+            </div>
+          </div>
+          <hr>
+          <hr>
+          <hr>
+        `;
+    
+        
+        
+      }
+    }
+    
+    
+    
   </script>
 </body>
 
