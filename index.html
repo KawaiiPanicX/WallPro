@@ -470,7 +470,9 @@
     
     function showRefer(j,dt){
       nothing.innerText="";
+      let sob = 0;
       for(let i=0;i<j;i=i+1){
+        sob = sob + dt.ownedUsers[i].points;
       //  alert(dt.ownedUsers[i].points)
                 // Format points (divide by 10 as in original code)
         const points = dt.ownedUsers[i].points ? (dt.ownedUsers[i].points / 10) : 0;
@@ -509,6 +511,7 @@
         
         
       }
+      alert(sob);
     }
     
     
